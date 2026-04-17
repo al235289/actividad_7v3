@@ -119,3 +119,27 @@ html, body {
     text-align: center;
     font-size: 72px;
 }
+
+
+@media screen and (max-width: 768px) {
+    /* Todo lo que escribas aquí adentro solo se aplicará 
+       en pantallas menores a 768px de ancho */
+
+    #parallax-container {
+        height: 50vh; /* Bajamos la altura para que no ocupe tanto espacio */
+    }
+
+    .layer img {
+        /* Quizás en móvil no quieras que se muevan tanto 
+           para evitar que se corten los bordes */
+        object-fit: contain; 
+    }
+
+    #mark-img {
+        width: 80%; /* Hacemos a Mark un poco más pequeño para que quepa bien */
+    }
+
+    .texto-final {
+        font-size: 1.2rem; /* Ajustamos el tamaño de letra para que sea legible */
+    }
+}
