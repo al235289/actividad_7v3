@@ -121,25 +121,51 @@ html, body {
 }
 
 
+
+/* --- AJUSTES PARA CELULAR --- */
 @media screen and (max-width: 768px) {
-    /* Todo lo que escribas aquí adentro solo se aplicará 
-       en pantallas menores a 768px de ancho */
-
+    
     #parallax-container {
-        height: 50vh; /* Bajamos la altura para que no ocupe tanto espacio */
+        height: 70vh; /* Bajamos un poco la altura para que el logo suba más rápido */
     }
 
-    .layer img {
-        /* Quizás en móvil no quieras que se muevan tanto 
-           para evitar que se corten los bordes */
-        object-fit: contain; 
-    }
-
+    /* Hacemos que Mark sea el protagonista y no se vea tan pequeño */
     #mark-img {
-        width: 80%; /* Hacemos a Mark un poco más pequeño para que quepa bien */
+        width: 140% !important; /* Lo agrandamos para que destaque en pantalla angosta */
+        left: -20%; /* Lo centramos un poco más a la fuerza */
+        top: 10%;
     }
 
-    .texto-final {
-        font-size: 1.2rem; /* Ajustamos el tamaño de letra para que sea legible */
+    /* Reacomodamos los asteroides para que no tapen la cara de Mark */
+    .asteroide {
+        width: 150px !important; /* Los hacemos más chicos */
     }
+
+    /* El primer asteroide (arriba izquierda) */
+    .asteroide:nth-child(1) {
+        top: 5% !important;
+        left: 5% !important;
+    }
+
+    /* El segundo asteroide (derecha) */
+    .asteroide:nth-child(2) {
+        top: 50% !important;
+        right: -10% !important;
+    }
+
+    /* La sección del Logo e Intro */
+    .intro {
+        padding: 50px 15px; /* Menos espacio a los lados */
+    }
+
+    .imagen_logo img {
+        width: 90%; /* Que el logo casi toque los bordes del cel */
+        margin-bottom: 20px;
+    }
+
+    .texto_inve p {
+        font-size: 1rem; /* Letra un poco más pequeña para que no ocupe 10 líneas */
+        line-height: 1.4;
+    }
+}
 }
