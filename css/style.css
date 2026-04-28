@@ -7,15 +7,16 @@
 
 
 body {
-  background: #000000;
+  background: #00000060;
   color: #fff;
   overflow-x: hidden;
   height: 5000px;
 }
 
 html, body {
-    background-color: #000000 !important;
+    background-color: #00000060 !important;
 }
+
 #parallax-container {
   position: fixed;
   top: 0;
@@ -26,7 +27,7 @@ html, body {
   overflow: hidden;
 }
 
-.layer {
+.capa {
   position: absolute;
   inset: 0;
   display: flex;
@@ -34,21 +35,21 @@ html, body {
 }
 
 /* Alineaciones */
-.layer-bg {
+.layer-espacio {
   z-index: 1;
 }
-.layer-sun {
+.layer-sol {
   z-index: 2;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 60px;
 }
-.layer-earth {
+.layer-tierra {
   z-index: 3;
   justify-content: center;
   align-items: flex-end;
 }
-.layer-moon {
+.layer-luna {
   z-index: 4;
   justify-content: flex-end;
   align-items: center;
@@ -59,26 +60,27 @@ html, body {
   justify-content: center;
   align-items: center;
 }
-#layer-asteroids {
+
+#asteroides {
   z-index: 5;
 }
 
-/* Assets */
-#layer-bg-img {
+
+#espacio-img {
   width: 100%;
   height: 130vh; /* Aumentamos a 130 para que sobre imagen abajo */
   background: url("../img/espacio.png") center/cover;
   position: absolute;
   top: 0;
 }
-#sun-img {
+#sol-img {
   width: 300px;
 }
-#earth-img {
+#tierra-img {
   width: 1600px;
   margin-bottom: -500px;
 }
-#moon-img {
+#luna-img {
   width: 400px;
 }
 #mark-img {
@@ -90,19 +92,19 @@ html, body {
 }
 
 /* Contenido */
-.main-content {
+.intro {
   position: relative;
   z-index: 10;
   /* Reducimos el margen para que el negro entre ANTES de que Mark desaparezca */
   margin-top: 100vh;
-  background-color: #000;
+  background-color: #000000e3;
 
   /* ESTA SOMBRA ES TU MEJOR AMIGA */
   /* Creamos una transición de 300px de puro negro que sube */
-  box-shadow: 0 -200px 200px 100px #000;
+  box-shadow: 0 -200px 250px 200px #000000e3;
 
   padding: 100px 0;
-  min-height: 6000px; /* Asegúrate de que sea muy largo */
+  min-height: 4000px; /* Asegúrate de que sea muy largo */
 }
 
 .imagen_logo{
@@ -120,52 +122,204 @@ html, body {
     font-size: 72px;
 }
 
+/* ========================================= */
+/* ESTILOS PARA LAS GALERÍAS (FLEXBOX)       */
+/* ========================================= */
 
+.seccion-galeria {
+    margin-top: 80px; /* Espacio entre el texto de Mark y las galerías */
+    width: 100%;
+   
+}
 
-/* --- AJUSTES PARA CELULAR --- */
-@media screen and (max-width: 768px) {
+.titulo-galeria {
+    text-align: center;
+    font-size: 46px;
+    margin-bottom: 30px;
+    color: #f7d200; /* Amarillo estilo Invincible */
+    text-transform: uppercase;
+}
+
+/* El contenedor principal Flexbox del profesor */
+.flex-galeria {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 30px; /* Hice el espacio un poquito más grande para que respiren */
+    flex-wrap: wrap; 
+    width: 100%;
     
+    /* ESTA ES LA MAGIA PARA QUE NO SEA TAN ANCHA */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    
+    padding: 20px;
+}
+
+/* ========================================= */
+/* ESTILOS PARA LOS ELEMENTOS INYECTADOS     */
+/* (Estos aplicarán a los divs que creará JS)*/
+/* ========================================= */
+
+/* ========================================= */
+/* ESTILOS PARA LOS ELEMENTOS INYECTADOS     */
+/* ========================================= */
+
+/* Diseño Rectangular (Para los Logos) */
+.item-logo {
+    width: 510px;
+    height: 290px;
+    background-color: #1a1a1a; 
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; 
+}
+
+/* ========================================= */
+/* NUEVO: Diseño Vertical (Para Personajes)  */
+/* ========================================= */
+
+.contenedor-tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px; /* Ancho de la tarjeta */
+    margin: 10px;
+    transition: transform 0.3s ease; /* Animación suave al pasar el mouse */
+}
+
+.contenedor-tarjeta:hover {
+    transform: translateY(-8px); /* La tarjeta "flota" hacia arriba */
+}
+
+.item-personaje-rect {
+    width: 100%;
+    height: 450px; /* Tarjeta más alta que ancha */
+    background-color: #1a1a1a; 
+    border-radius: 8px; /* Esquinas ligeramente redondeadas, no círculos */
+    display: flex;
+    justify-content: center;
+    overflow: hidden; 
+    position: relative; 
+    align-items: flex-end;
+}
+
+/* Caja negra transparente para el texto, sobrepuesta en la imagen */
+.caja-texto-tarjeta {
+    background-color: rgba(0, 0, 0, 0.85); 
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -50px; /* Esto empuja el texto HACIA ARRIBA para que pise la imagen */
+    z-index: 10; 
+    text-align: center;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.5); 
+}
+
+/* Ajuste para las imágenes dentro de los contenedores */
+.item-logo img, 
+.item-personaje-rect img {
+    width: 95%;
+    height: 95%;
+    object-fit: cover; /* Llena el espacio sin deformarse */
+    border-radius: inherit; 
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.603));
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    /* 1. Contenedor principal con altura controlada */
     #parallax-container {
-        height: 70vh; /* Bajamos un poco la altura para que el logo suba más rápido */
+        height: 60vh !important; 
+        position: relative;
+        overflow: hidden;
+        background-color: #050505;
     }
 
-    /* Hacemos que Mark sea el protagonista y no se vea tan pequeño */
+    /* 2. MAGIA DE FLEXBOX: Convertimos las capas en cajas centradoras */
+    .capa {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transform: none !important; /* Bloqueamos el JavaScript en móvil */
+    }
+
+    /* 3. Fondo espacial */
+    #espacio-img {
+        position: absolute;
+        width: 100% !important;
+        height: 100% !important;
+        background-image: url('../img/espacio.png'); /* Verifica esta ruta */
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+    }
+
+    /* 4. MARK: Al usar Flexbox en la capa, esto queda perfectamente centrado */
     #mark-img {
-        width: 140% !important; /* Lo agrandamos para que destaque en pantalla angosta */
-        left: -20%; /* Lo centramos un poco más a la fuerza */
-        top: 10%;
+        width: 90% !important; /* 90% para que le quede aire a los lados */
+        height: 90% !important;
+        object-fit: contain !important; /* Esto OBLIGA a que se vea el cuerpo completo */
+        z-index: 5;
+        position: relative !important;
+        transform: none !important;
     }
 
-    /* Reacomodamos los asteroides para que no tapen la cara de Mark */
-    .asteroide {
-        width: 150px !important; /* Los hacemos más chicos */
+    /* 5. Posiciones absolutas solo para los planetas, forzando que no se muevan */
+    #sol-img {
+        position: absolute !important;
+        width: 70px !important;
+        top: 10% !important;
+        left: 10% !important;
+        z-index: 2;
+        transform: none !important;
     }
 
-    /* El primer asteroide (arriba izquierda) */
-    .asteroide:nth-child(1) {
-        top: 5% !important;
-        left: 5% !important;
+    #luna-img {
+        position: absolute !important;
+        width: 50px !important;
+        top: 15% !important;
+        right: 10% !important;
+        z-index: 1;
+        transform: none !important;
     }
 
-    /* El segundo asteroide (derecha) */
-    .asteroide:nth-child(2) {
-        top: 50% !important;
-        right: -10% !important;
+    #tierra-img {
+        position: absolute !important;
+        width: 150px !important;
+        bottom: 5% !important;
+        top: auto !important;
+        z-index: 3;
+        transform: none !important;
     }
 
-    /* La sección del Logo e Intro */
+    /* 6. Apagamos asteroides para mantenerlo limpio */
+    .asteroide { display: none !important; }
+
+    /* 7. Texto e Intro */
     .intro {
-        padding: 50px 15px; /* Menos espacio a los lados */
+        position: relative !important;
+        height: auto !important;
+        min-height: 40vh !important; /* Para que llene el resto de la pantalla */
+        padding: 40px 20px !important;
+        background-color: #000 !important;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .imagen_logo img {
-        width: 90%; /* Que el logo casi toque los bordes del cel */
-        margin-bottom: 20px;
+        width: 90% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
     }
-
-    .texto_inve p {
-        font-size: 1rem; /* Letra un poco más pequeña para que no ocupe 10 líneas */
-        line-height: 1.4;
-    }
-}
 }
