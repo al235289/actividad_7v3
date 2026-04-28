@@ -1,6 +1,3 @@
-// =======================================================
-// EFECTO PARALLAX (Corregido, sin duplicados)
-// =======================================================
 window.addEventListener('scroll', () => {
     const scroll = window.pageYOffset;
     const height = window.innerHeight;
